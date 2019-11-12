@@ -1,6 +1,5 @@
 package algorithms;
 
-
 /* 
  * Recursive Binary Search Implementation
  * Worst Case Runtime: O(logn)
@@ -25,11 +24,19 @@ public class BinarySearch {
 
 	public static int search(int[] nums, int target, int start, int end) {
 		if(end >= start) {
+			
+			/* Use this instead of (start + end) / 2 to handle overflow */
 			int midPoint = start + (end - start) / 2;
+			
+			/* if the midpoint is the target number, return it */
 			if(nums[midPoint] == target)
 				return midPoint;
+			
+			/* if the midpoint > target, search the lower half of the array */
 			else if(nums[midPoint] > target)
 				return search(nums, target, start, midPoint - 1);
+			
+			/* if the midpoint < target, search the higher half of the array */
 			else if(nums[midPoint] < target)
 				return search(nums, target, midPoint + 1, end);
 		}
